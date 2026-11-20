@@ -1,0 +1,40 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-demo-app
+  namespace: k8s-vault-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vault-demo
+  template:
+    metadata:
+      labels:
+        app: vault-demo
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "demo"
+
+        vault.hashicorp.com/agent-inject-secret-database: "secret/data/database/config"
+
+        vault.hashicorp.com/agent-inject-template-database: |
+          {{- with secret "secret/data/database/config" -}}
+          username={{ .Data.data.username }}
+          password={{ .Data.data.password }}
+          {{- end }}
+    spec:
+      serviceAccountName: vault-demo
+      containers:
+        - name: app
+          image: busybox:1.36
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo "Application started"
+              test -s /vault/secrets/database
+              grep -q "^username=appuser$" /vault/secrets/database
+              echo "Vault secret successfully loaded and verified"
+              sleep 3600
+
