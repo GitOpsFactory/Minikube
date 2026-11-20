@@ -7,6 +7,13 @@ spec:
   - name: write-ip
     image: busybox
     command: ["sh", "-c", "echo $MY_POD_IP > /web-content/ip.txt; echo 'Wrote the Pod IP to ip.txt'"]
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
     env:
     - name: MY_POD_IP
       valueFrom:

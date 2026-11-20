@@ -44,3 +44,6 @@ bkusl@Advik_kuslapur MINGW64 ~/ORG/Minikube (main)
 $ echo "# Minikube" >> README.md
 
 bkusl@Advik_kuslapur MINGW64 ~/ORG/Minikube (main)
+
+----------------------------------------------------------
+Hello, World! Your Pod IP is: 10.244.0.6
