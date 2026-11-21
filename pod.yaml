@@ -1,0 +1,18 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: storage-pod
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "sleep 36000"]
+      volumeMounts:
+        - name: app-storage
+          mountPath: /data
+
+  volumes:
+    - name: app-storage
+      persistentVolumeClaim:
+        claimName: my-pvc
