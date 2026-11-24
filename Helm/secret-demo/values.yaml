@@ -1,0 +1,14 @@
+
+replicaCount: 1
+
+image:
+  repository: busybox
+  tag: "1.36"
+  pullPolicy: IfNotPresent
+
+secret:
+  existingSecret: db-credentials
+  usernameKey: username
+  passwordKey: password
+
+containerPort: 8080

@@ -1,0 +1,10 @@
+# Kubernetes secrets containing real credentials
+**/*secret*.yaml
+**/*secret*.yml
+**/*credentials*.yaml
+**/*credentials*.yml
+
+# Local overrides and generated Helm output
+values-local.yaml
+values-override.yaml
+rendered-*.yaml
