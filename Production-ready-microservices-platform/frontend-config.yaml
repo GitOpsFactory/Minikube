@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: project-microservices
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Platform Engineering Project</title>
+    </head>
+    <body>
+      <h1>My Kubernetes Microservices Platform</h1>
+      <p>Frontend is running successfully!</p>
+
+      <h2>Backend response</h2>
+      <pre id="backend">Loading...</pre>
+
+      <h2>API response</h2>
+      <pre id="api">Loading...</pre>
+
+      <script>
+        fetch('/api/')
+          .then(r => r.text())
+          .then(data => document.getElementById('backend').textContent = data)
+          .catch(err => document.getElementById('backend').textContent = err);
+
+        fetch('/service/')
+          .then(r => r.text())
+          .then(data => document.getElementById('api').textContent = data)
+          .catch(err => document.getElementById('api').textContent = err);
+      </script>
+    </body>
+    </html>
+
+  default.conf: |
+    server {
+      listen 80;
+      server_name _;
+
+      location / {
+        root /usr/share/nginx/html;
+        index index.html;
+      }
+
+      location /api/ {
+        proxy_pass http://backend-svc:5678/;
+      }
+
+      location /service/ {
+        proxy_pass http://api-svc:5678/;
+      }
+    } 
