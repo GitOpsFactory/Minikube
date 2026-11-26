@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8s-day10
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-reader
+  namespace: k8s-day10 
