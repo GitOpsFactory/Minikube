@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kuslapur-pull-secret
+data:
+  .dockerconfigjson: ewogICJhdXRocyI6IHsKICAgICJxdWF5LmlvIjogewogICAgICAiYXV0aCI6ICJhM1Z6YkdGd2RYSTZObGRzUzFad1NtMTBXVXhUZUN0dFdWWkxLemxtZWxkbFRFRnNZbWRKWW5KVEt6Z3hVMGswTHprM1VGRTNWVTVyVEdoNlpWQmxXSHA0VjA5TWVqbDJiQT09IiwKICAgICAgImVtYWlsIjogIiIKICAgIH0KICB9Cn0=
+type: kubernetes.io/dockerconfigjson
