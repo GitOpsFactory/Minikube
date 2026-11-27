@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enterprise Order Management</title>
+</head>
+<body>
+    <h1>Enterprise Order Management System</h1>
+    <h2>Orders Dashboard</h2>
+    <button onclick="loadOrders()">Load Orders</button>
+    <pre id="orders">Click Load Orders</pre>
+
+    <script>
+        async function loadOrders() {
+            const response = await fetch('/api/orders');
+            const data = await response.json();
+            document.getElementById('orders').textContent =
+                JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
